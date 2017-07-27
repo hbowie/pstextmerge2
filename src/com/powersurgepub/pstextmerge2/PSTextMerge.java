@@ -151,7 +151,7 @@ public class PSTextMerge
 
   private     TextMergeInput      textMergeInput = null;
   private     TextMergeScript     textMergeScript = null;
-  // private     TextMergeFilter     textMergeFilter = null;
+  private     TextMergeFilter     textMergeFilter = null;
   // private     TextMergeSort       textMergeSort = null;
   // private     TextMergeTemplate   textMergeTemplate = null;
   // private     TextMergeOutput     textMergeOutput = null;
@@ -423,13 +423,14 @@ public class PSTextMerge
     textMergeScript   = new TextMergeScript   (primaryStage, list);
     textMergeInput    = new TextMergeInput    
         (primaryStage, list, this, textMergeScript);
-    // textMergeFilter   = new TextMergeFilter   (list, textMergeScript);
+    textMergeFilter   = new TextMergeFilter   
+        (primaryStage, list, this, textMergeScript);
     // textMergeSort     = new TextMergeSort     (list, textMergeScript);
     // textMergeTemplate = new TextMergeTemplate (list, textMergeScript);
     // textMergeOutput   = new TextMergeOutput   (list, textMergeScript);
     textMergeScript.allowAutoplay(mainClass);
     textMergeScript.setInputModule(textMergeInput);
-    // textMergeScript.setFilterModule(textMergeFilter);
+    textMergeScript.setFilterModule(textMergeFilter);
     // textMergeScript.setOutputModule(textMergeOutput);
     // textMergeScript.setSortModule(textMergeSort);
     // textMergeScript.setTemplateModule(textMergeTemplate);
@@ -680,14 +681,14 @@ public class PSTextMerge
 		  sortTabBuilt = true;
 		  tabPosition++;
 		}
-		
+		*/
 		// Create Filter Pane
 		if (filterTabDisplay) {
       textMergeFilter.setTabs(tabs);
       filterTabBuilt = true;
 		  tabPosition++;
 		}
-		
+		/*
 		// Create Output Pane
 		if (outputTabDisplay) {
       textMergeOutput.setTabs(tabs);
@@ -1004,9 +1005,11 @@ public class PSTextMerge
       if (sortTabBuilt) {
         textMergeSort.setList(list);
       }
+      */
       if (filterTabBuilt) {
         textMergeFilter.setList(list);
       }
+      /*
       if (templateTabBuilt) {
         textMergeTemplate.setList(list);
       }
