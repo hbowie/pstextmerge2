@@ -152,9 +152,9 @@ public class PSTextMerge
   private     TextMergeInput      textMergeInput = null;
   private     TextMergeScript     textMergeScript = null;
   private     TextMergeFilter     textMergeFilter = null;
-  // private     TextMergeSort       textMergeSort = null;
+  private     TextMergeSort       textMergeSort = null;
   // private     TextMergeTemplate   textMergeTemplate = null;
-  // private     TextMergeOutput     textMergeOutput = null;
+  private     TextMergeOutput     textMergeOutput = null;
 
   // A log juggler to create other logging objects and perform logging operations.
   private     LogJuggler          logJuggler = new LogJuggler("PSTextMerge");
@@ -425,14 +425,16 @@ public class PSTextMerge
         (primaryStage, list, this, textMergeScript);
     textMergeFilter   = new TextMergeFilter   
         (primaryStage, list, this, textMergeScript);
-    // textMergeSort     = new TextMergeSort     (list, textMergeScript);
+    textMergeSort     = new TextMergeSort
+        (primaryStage, list, this, textMergeScript);
     // textMergeTemplate = new TextMergeTemplate (list, textMergeScript);
-    // textMergeOutput   = new TextMergeOutput   (list, textMergeScript);
+    textMergeOutput   = new TextMergeOutput   
+        (primaryStage, list, this, textMergeScript);
     textMergeScript.allowAutoplay(mainClass);
     textMergeScript.setInputModule(textMergeInput);
     textMergeScript.setFilterModule(textMergeFilter);
-    // textMergeScript.setOutputModule(textMergeOutput);
-    // textMergeScript.setSortModule(textMergeSort);
+    textMergeScript.setOutputModule(textMergeOutput);
+    textMergeScript.setSortModule(textMergeSort);
     // textMergeScript.setTemplateModule(textMergeTemplate);
     textMergeScript.setScriptExecutor(scriptExecutor);
 
@@ -674,28 +676,27 @@ public class PSTextMerge
 		  tabPosition++;
 		}
 		
-    /*
 		// Create Sort Pane
 		if (sortTabDisplay) {
 		  textMergeSort.setTabs(tabs, true);
 		  sortTabBuilt = true;
 		  tabPosition++;
 		}
-		*/
+
 		// Create Filter Pane
 		if (filterTabDisplay) {
       textMergeFilter.setTabs(tabs);
       filterTabBuilt = true;
 		  tabPosition++;
 		}
-		/*
+		
 		// Create Output Pane
 		if (outputTabDisplay) {
       textMergeOutput.setTabs(tabs);
       textMergeOutput.setMenus(menuBar);
 			tabPosition++;
 		}
-		
+		/*
 		// Create a Template Pane
 		if (templateTabDisplay) {
       textMergeTemplate.setTabs(tabs);
@@ -988,11 +989,10 @@ public class PSTextMerge
       fileNameLabel.setText("No Input File");
     }
 
-    /*
     if (textMergeOutput != null) {
       textMergeOutput.setListAvailable(listAvailable);
     }
-    */
+    
     if (listAvailable) {
       // dataTable = new DataTable (filteredDataSet);
       numberOfFields = list.getRecDef().getNumberOfFields();
@@ -1002,10 +1002,11 @@ public class PSTextMerge
         fileNameLabel.setText (textMergeInput.getFileNameToDisplay());
         setTableModels();
       }
+      */
       if (sortTabBuilt) {
         textMergeSort.setList(list);
       }
-      */
+
       if (filterTabBuilt) {
         textMergeFilter.setList(list);
       }
