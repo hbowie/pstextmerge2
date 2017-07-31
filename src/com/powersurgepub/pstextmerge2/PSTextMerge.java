@@ -153,7 +153,7 @@ public class PSTextMerge
   private     TextMergeScript     textMergeScript = null;
   private     TextMergeFilter     textMergeFilter = null;
   private     TextMergeSort       textMergeSort = null;
-  // private     TextMergeTemplate   textMergeTemplate = null;
+  private     TextMergeTemplate   textMergeTemplate = null;
   private     TextMergeOutput     textMergeOutput = null;
 
   // A log juggler to create other logging objects and perform logging operations.
@@ -427,7 +427,8 @@ public class PSTextMerge
         (primaryStage, list, this, textMergeScript);
     textMergeSort     = new TextMergeSort
         (primaryStage, list, this, textMergeScript);
-    // textMergeTemplate = new TextMergeTemplate (list, textMergeScript);
+    textMergeTemplate = new TextMergeTemplate
+        (primaryStage, list, this, textMergeScript);
     textMergeOutput   = new TextMergeOutput   
         (primaryStage, list, this, textMergeScript);
     textMergeScript.allowAutoplay(mainClass);
@@ -435,7 +436,7 @@ public class PSTextMerge
     textMergeScript.setFilterModule(textMergeFilter);
     textMergeScript.setOutputModule(textMergeOutput);
     textMergeScript.setSortModule(textMergeSort);
-    // textMergeScript.setTemplateModule(textMergeTemplate);
+    textMergeScript.setTemplateModule(textMergeTemplate);
     textMergeScript.setScriptExecutor(scriptExecutor);
 
 		try {
@@ -696,7 +697,7 @@ public class PSTextMerge
       textMergeOutput.setMenus(menuBar);
 			tabPosition++;
 		}
-		/*
+		
 		// Create a Template Pane
 		if (templateTabDisplay) {
       textMergeTemplate.setTabs(tabs);
@@ -711,7 +712,6 @@ public class PSTextMerge
       textMergeScript.setMenus(menuBar, "Script");
 		  tabPosition++;
 		}
-    */
 		
 		// Create Logging Pane
 		if (logTabDisplay) {
@@ -1010,11 +1010,11 @@ public class PSTextMerge
       if (filterTabBuilt) {
         textMergeFilter.setList(list);
       }
-      /*
+      
       if (templateTabBuilt) {
         textMergeTemplate.setList(list);
       }
-      */
+      
     }
 
   }
@@ -1070,7 +1070,7 @@ public class PSTextMerge
     textMergeScript.stopScriptRecording();
     if (mainClass) {
       textMergeScript.savePrefs();
-      // textMergeTemplate.savePrefs();
+      textMergeTemplate.savePrefs();
       userPrefs.setPref (UserPrefs.LEFT, primaryStage.getX());
       userPrefs.setPref (UserPrefs.TOP, primaryStage.getY());
       userPrefs.setPref (UserPrefs.WIDTH, primaryStage.getWidth());
