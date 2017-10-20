@@ -27,8 +27,6 @@ package com.powersurgepub.pstextmerge2;
   import com.powersurgepub.psutils2.textmerge.*;
   import com.powersurgepub.psutils2.ui.*;
 
-  import de.codecentric.centerdevice.*;
-
   import java.io.*;
   import java.net.*;
   import java.text.*;
