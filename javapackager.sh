@@ -28,7 +28,7 @@ $jdk/bin/javapackager -deploy \
     -appclass com.powersurgepub.pstextmerge2.PSTextMerge \
     -name PSTextMerge \
     -title "Merge rows and columns into text files" \
-    -BappVersion=6.00 \
+    -BappVersion=6.10 \
     -outdir deploy \
     -outfile pstextmerge \
     -v

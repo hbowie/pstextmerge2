@@ -76,7 +76,7 @@ public class PSTextMerge
 
   /** Program Name */
   public    static  final String  PROGRAM_NAME = "PSTextMerge";
-  public    static  final String  PROGRAM_VERSION = "6.00";
+  public    static  final String  PROGRAM_VERSION = "6.10";
 
   private   static  final String  USER_GUIDE
       = "userguide/pstextmerge.html";
@@ -318,7 +318,7 @@ public class PSTextMerge
      Play a script.
    
      @param script    Name of script file to be played.
-     @param logOutput Output destination for log messages.
+     @param logIn Output destination for log messages.
    */
 	public static void execScript (String script, Logger logIn) {
     String[] args = new String[2];
@@ -337,7 +337,7 @@ public class PSTextMerge
      Play a script.
 
      @param script    Name of script file to be played.
-     @param logOutput Output destination for log messages.
+     @param logIn Output destination for log messages.
      @param scriptExecutor A class that is prepared to execute requested
                            script callbacks.
    */
@@ -418,7 +418,7 @@ public class PSTextMerge
     appFolder = home.getAppFolder();
     
     list = new DataRecList();
-    textMergeScript   = new TextMergeScript   (primaryStage, list);
+    textMergeScript   = new TextMergeScript   (primaryStage, list, this);
     textMergeInput    = new TextMergeInput    
         (primaryStage, list, this, textMergeScript);
     textMergeFilter   = new TextMergeFilter   
@@ -945,6 +945,19 @@ public class PSTextMerge
     logJuggler.recordEvent(LogEvent.NORMAL, "Logging tab created", false);
 
 	} // end addLoggingTab method
+
+  /**
+   Let's reset as many variables as we can to restore the
+   text merge state to its original condition.
+   */
+  public void textMergeReset() {
+    textMergeInput.textMergeReset();
+    textMergeScript.textMergeReset();
+    textMergeFilter.textMergeReset();
+    textMergeSort.textMergeReset();
+    textMergeTemplate.textMergeReset();
+    textMergeOutput.textMergeReset();
+  }
   
   /**
    Let's set to a default size and then center the window on the screen.. 
